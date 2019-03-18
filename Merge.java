@@ -10,30 +10,27 @@ public class Merge{
   }
 
   private static void merge(int[] data, int low , int high){
+    //If low is greater than or equal to high, terminate the function
     if (low >= high){
       return;
     }
-  }
-
-  private static int help(int[] data, int low, int high){
-    if (low == high){
-      return low;
-    }
-    int middle = (data.length / 2) - 1;
+    //Left is always the first half of data
+    left = new int[data.length / 2];
+    //If the data has an even amount of integers, then right is equal to left
     if (data.length % 2 == 0){
-      left = new int[data.length / 2];
       right = left;
     }
+    //If there is an odd amount, then the right one will be one more than the left
     else{
-      left = new int[middle];
-      right = new int[middle + 1];
+      right = new int[left.length + 1];
     }
-    temp = new int[data.length];
-    if (leftsort && rightsort){
-      for (int i = 0; i < temp.length; i ++){
-        
-      }
+
+    //Setting the values in left and right
+    for (int i = 0; i < left.length; i ++){
+      left[i] = data[i];
     }
-    return middle;
+    for (int i = 0; i < right.length; i ++){
+      right[i] = data[left.length - 1 + i];
+    }
   }
 }
