@@ -32,5 +32,41 @@ public class Merge{
     for (int i = 0; i < right.length; i ++){
       right[i] = data[left.length - 1 + i];
     }
+
+    //Merge left and right
+    merge(left, 0, left.length - 1);
+    merge(right, 0, right.length - 1);
+
+    //Keeps track of left and right indexes
+    int li = 0;
+    int ri = 0;
+
+    //Loop through data...
+    for (int i = 0; i < data.length; i ++){
+      //If both the indexes are in bound...
+      if (li < left.length && ri < right.length){
+        //...then pick the smaller value to go first in the data
+        if (left[li] < right[ri]){
+          data[i] = left[li];
+          li ++;
+        }
+        else{
+          data[i] = right[ri];
+          ri ++;
+        }
+      }
+      //If the left is out of bounds but the right is not, then set data[i] to
+      //the value of right
+      else if (li >= left.length && ri < right.length){
+        data[i] = right[ri];
+        ri ++;
+      }
+      //If the right is out of bounds but the  left is not, then set data[i] to
+      //the value of left
+      else if (li < left.length && ri >= right.length){
+        data[i] = left[li];
+        li ++;
+      }
+    }
   }
 }
